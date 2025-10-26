@@ -1,9 +1,10 @@
 "use client"
 
-import * as React from "react"
+import type { ReactNode } from "react"
 import { ThemeProvider as NextThemesProvider } from "next-themes"
+import { ClerkProvider } from "@clerk/nextjs"
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({ children }: { children: ReactNode }) {
   return (
     <NextThemesProvider
       attribute="class"
@@ -12,7 +13,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
       disableTransitionOnChange
       enableColorScheme
     >
-      {children}
+      <ClerkProvider>
+        {children}
+      </ClerkProvider>
     </NextThemesProvider>
   )
 }
